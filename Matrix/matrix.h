@@ -12,7 +12,7 @@
 */
 struct Matrix {
   double** matrix;
-  int raws, columns;
+  int rows, columns;
 };
 
 void create_matrix(struct Matrix *, int, int);

@@ -8,7 +8,7 @@ int main() {
   create_matrix(&matrix, 2, 2);
   matrix.matrix[0][1] = 1;
   t_matrix = transpose(&matrix);
-  for (int i=0; i<t_matrix.raws; i++) {
+  for (int i=0; i<t_matrix.rows; i++) {
     for (int j=0; j<t_matrix.columns; j++) printf("%.0f ", t_matrix.matrix[i][j]);
     printf("\n");
   }
