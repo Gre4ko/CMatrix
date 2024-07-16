@@ -27,6 +27,9 @@ void create_matrix(struct Matrix *mat, int rows, int columns) {
 void free_matrix(struct Matrix *mat) {
     for (int i = 0; i < mat->rows; ++i) free(mat->matrix[i]);
     free(mat->matrix);
+    mat->matrix = NULL;
+    mat->rows = 0;
+    mat->columns = 0;
 }
 
 //ru: Заполнение матрицы каким-то значением
