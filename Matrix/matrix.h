@@ -19,4 +19,4 @@ void create_matrix(struct Matrix *, int, int);
 void free_matrix(struct Matrix *);
 void fill_matrix(struct Matrix *, double);
 struct Matrix transpose(const struct Matrix *);
-#endif // MYHEADER_H
+#endif
