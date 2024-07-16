@@ -22,8 +22,8 @@ void create_matrix(struct Matrix *mat, int rows, int columns) {
 
 }
 
-//ru: Освобождение памяти от matrix. Мы же не хотим утечек памяти, верно?
-//en: Releasing the memory from the matrix. We don't want memory leaks, right?
+//ru: Освобождение памяти от matrix. Мы же не хотим утечек памяти, верно? А также обнуление rows и colums.
+//en: Releasing the memory from the matrix. We don't want memory leaks, right? As well as zeroing rows and columns.
 void free_matrix(struct Matrix *mat) {
     for (int i = 0; i < mat->rows; ++i) free(mat->matrix[i]);
     free(mat->matrix);
