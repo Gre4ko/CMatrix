@@ -2,6 +2,7 @@
 #define MATRIX_cpp
 #include "matrix.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 //ru: Создание матрицы rows*columns
 //en: Creating rows*columns matrix
@@ -50,4 +51,71 @@ struct Matrix transpose(const struct Matrix *mat) {
     return result;
 }
 
+//ru: Сложение матриц
+//en: Matrix addition
+struct Matrix add_matrices(const struct Matrix *a, const struct Matrix *b) {
+  if (a->rows != b->rows || a->columns != b->columns) {
+        fprintf(stderr, "Matrix dimensions must match for addition.\n");
+        exit(EXIT_FAILURE);
+  }
+
+  struct Matrix result;
+  create_matrix(&result, a->rows, a->columns);
+  for (int i = 0; i<a->rows; i++)
+    for (int j = 0; j<a->columns; j++)
+      result.matrix[i][j] = a->matrix[i][j]+b->matrix[i][j];
+  return result;
+}
+
+//ru: Вычитание матриц
+//en: Subtraction of matrices
+struct Matrix sub_matrices(const struct Matrix *a, const struct Matrix *b) {
+  struct Matrix c = matrix_mul_double(b, -1);
+  return add_matrices(a, &c);
+}
+
+//ru: Умножение матрицы на число
+//en: Multiplying a matrix by a number
+struct Matrix matrix_mul_double(const struct Matrix *a, double b) {
+  struct Matrix result;
+  create_matrix(&result, a->rows, a->columns);
+  for (int i = 0; i<a->rows; i++)
+    for (int j = 0; j<a->columns; j++)
+      result.matrix[i][j] = a->matrix[i][j]*b;
+  return result;
+}
+
+//ru: Умножение матриц
+//en: Multiplication of matrices
+struct Matrix mul_matrices(const struct Matrix *a, const struct Matrix *b) {
+  if (a->columns != b->rows) {
+        fprintf(stderr, "Number of columns of the first matrix must be equal to the number of rows of the second matrix.\n");
+        exit(EXIT_FAILURE);
+  }
+
+
+  struct Matrix result;
+  create_matrix(&result, a->rows, b->columns);
+
+  for (int i = 0; i < a->rows; ++i) {
+    for (int j = 0; j < b->columns; ++j) {
+      for (int k = 0; k < a->columns; ++k) {
+        result.matrix[i][j] += a->matrix[i][k] * b->matrix[k][j];
+      }
+    }
+}
+
+return result;
+}
+
+//ru: Печатание матрицы
+//en: Printing the matrix
+void print_matrix(const struct Matrix *mat) {
+    for (int i = 0; i < mat->rows; ++i) {
+        for (int j = 0; j < mat->columns; ++j) {
+            printf("%lf ", mat->matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
 #endif
