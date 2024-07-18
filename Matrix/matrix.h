@@ -19,6 +19,7 @@ void create_matrix(struct Matrix *, int, int);
 void free_matrix(struct Matrix *);
 void fill_matrix(struct Matrix *, double);
 struct Matrix transpose(const struct Matrix *);
+<<<<<<< HEAD
 struct Matrix add_matrices(const struct Matrix *, const struct Matrix *);
 struct Matrix sub_matrices(const struct Matrix *, const struct Matrix *);
 struct Matrix matrix_mul_double(const struct Matrix *, double);
@@ -27,3 +28,6 @@ struct Matrix mul_matrices(const struct Matrix *, const struct Matrix *);
 
 void print_matrix(const struct Matrix *);
 #endif // MYHEADER_H
+=======
+#endif
+>>>>>>> 2bab85ce1d10f12b974d2ceb0450ef72ce32d915
