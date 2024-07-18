@@ -1,6 +1,5 @@
 #include "..\Matrix\matrix.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
 
 int main() {
   struct Matrix matrix;
