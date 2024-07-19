@@ -1,13 +1,13 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-/* Ru:
-* Создание структуры матрицы.
-* Состоит из двумерного массива matrix и целочисленных полей raws и columns
-* С этой струткурой производится вся работа в данном модуле.
+/* Ua:
+* Створення структури матриці.
+* Складається з двовимірного масиву matrix та цілочисельних полів rows і columns
+* Вся робота в цьому модулі виконується з цією структурою.
 *  En:
 * Create a matrix structure.
-* Consists of a two-dimensional array matrix and integer fields raws and columns
+* Consists of a two-dimensional array matrix and integer fields rows and columns
 * All work in this module is done with this structure.
 */
 struct Matrix {
@@ -23,7 +23,6 @@ struct Matrix add_matrices(const struct Matrix *, const struct Matrix *);
 struct Matrix sub_matrices(const struct Matrix *, const struct Matrix *);
 struct Matrix matrix_mul_double(const struct Matrix *, double);
 struct Matrix mul_matrices(const struct Matrix *, const struct Matrix *);
-
 
 void print_matrix(const struct Matrix *);
 #endif // MYHEADER_H
