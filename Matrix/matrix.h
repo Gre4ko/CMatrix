@@ -26,4 +26,4 @@ struct Matrix mul_matrices(const struct Matrix *, const struct Matrix *);
 
 
 void print_matrix(const struct Matrix *);
-#endif
+#endif // MYHEADER_H

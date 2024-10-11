@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-//ru: Создание матрицы rows*columns
+//ua: Створення матриці rows*columns
 //en: Creating rows*columns matrix
 void create_matrix(struct Matrix *mat, int rows, int columns) {
-  //ru: Создание двумерного массива data и динамическое выделение памяти для него
+  //ua: Створення двовимірного масиву data та динамічне виділення пам'яті для нього
   //en: Creating a two-dimensional data array and dynamic memory allocation for it
   double** data = (double**)malloc(rows * sizeof(double*));
   for (int i=0; i<rows; i++) {
@@ -15,7 +15,7 @@ void create_matrix(struct Matrix *mat, int rows, int columns) {
     for (int j=0; j<columns; j++) data[i][j] = 0;
   }
 
-  //ru: Заполняем Matrix значениями
+  //ua: Заповнюємо Matrix значеннями
   //en: Fill Matrix with values
   mat->matrix = data;
   mat->rows = rows;
@@ -23,7 +23,7 @@ void create_matrix(struct Matrix *mat, int rows, int columns) {
 
 }
 
-//ru: Освобождение памяти от matrix. Мы же не хотим утечек памяти, верно? А также обнуление rows и colums.
+//ua: Звільнення пам'яті від matrix. Ми ж не хочемо витоків пам'яті, правда? А також обнулення rows і columns.
 //en: Releasing the memory from the matrix. We don't want memory leaks, right? As well as zeroing rows and columns.
 void free_matrix(struct Matrix *mat) {
     for (int i = 0; i < mat->rows; i++) free(mat->matrix[i]);
@@ -33,7 +33,7 @@ void free_matrix(struct Matrix *mat) {
     mat->columns = 0;
 }
 
-//ru: Заполнение матрицы каким-то значением
+//ua: Заповнення матриці якимось значенням
 //en: Filling matrix with some value
 void fill_matrix(struct Matrix *mat, double value) {
   for (int i=0; i<mat->rows; i++)
@@ -41,7 +41,7 @@ void fill_matrix(struct Matrix *mat, double value) {
       mat->matrix[i][j] = value;
 }
 
-//ru: Транспонирование матрицы, в общем это база.
+//ua: Транспонування матриці, в загальному це база.
 //en: Matrix transpose, that's basically the base.
 struct Matrix transpose(const struct Matrix *mat) {
     struct Matrix result;
@@ -54,11 +54,11 @@ struct Matrix transpose(const struct Matrix *mat) {
     return result;
 }
 
-//ru: Сложение матриц
+//ua: Додавання матриць
 //en: Matrix addition
 struct Matrix add_matrices(const struct Matrix *a, const struct Matrix *b) {
   if (a->rows != b->rows || a->columns != b->columns) {
-        fprintf(stderr, "Matrix dimensions must match for addition.\n");
+        fprintf(stderr, "Розміри матриць повинні збігатися для додавання.\n");
         exit(EXIT_FAILURE);
   }
 
@@ -70,14 +70,14 @@ struct Matrix add_matrices(const struct Matrix *a, const struct Matrix *b) {
   return result;
 }
 
-//ru: Вычитание матриц
+//ua: Віднімання матриць
 //en: Subtraction of matrices
 struct Matrix sub_matrices(const struct Matrix *a, const struct Matrix *b) {
   struct Matrix c = matrix_mul_double(b, -1);
   return add_matrices(a, &c);
 }
 
-//ru: Умножение матрицы на число
+//ua: Множення матриці на число
 //en: Multiplying a matrix by a number
 struct Matrix matrix_mul_double(const struct Matrix *a, double b) {
   struct Matrix result;
@@ -88,14 +88,13 @@ struct Matrix matrix_mul_double(const struct Matrix *a, double b) {
   return result;
 }
 
-//ru: Умножение матриц
+//ua: Множення матриць
 //en: Multiplication of matrices
 struct Matrix mul_matrices(const struct Matrix *a, const struct Matrix *b) {
   if (a->columns != b->rows) {
-        fprintf(stderr, "Number of columns of the first matrix must be equal to the number of rows of the second matrix.\n");
+        fprintf(stderr, "Кількість стовпців першої матриці повинна дорівнювати кількості рядків другої матриці.\n");
         exit(EXIT_FAILURE);
   }
-
 
   struct Matrix result;
   create_matrix(&result, a->rows, b->columns);
@@ -106,12 +105,12 @@ struct Matrix mul_matrices(const struct Matrix *a, const struct Matrix *b) {
         result.matrix[i][j] += a->matrix[i][k] * b->matrix[k][j];
       }
     }
+  }
+
+  return result;
 }
 
-return result;
-}
-
-//ru: Печатание матрицы
+//ua: Друк матриці
 //en: Printing the matrix
 void print_matrix(const struct Matrix *mat) {
     for (int i = 0; i < mat->rows; ++i) {
